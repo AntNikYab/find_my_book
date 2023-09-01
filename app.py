@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import torch
 import numpy as np
-from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModel
 import faiss
 
