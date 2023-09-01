@@ -21,7 +21,7 @@ list_categories = catalog_soup.find_all('li', class_='list-group-item')
 df = []
 columns = ['product_url', 'image', 'author', 'title', 'annotation', 'genre']
 
-
+n = 1
 for link in tqdm(list_categories):
 
     category_url = 'https://www.biblio-globus.ru' + link.find('a')['href']
@@ -29,7 +29,7 @@ for link in tqdm(list_categories):
     category_soup = BeautifulSoup(category_page.text, 'lxml')    
     list_subcategories = category_soup.find_all('a', class_='product-preview-title')
 
-    n = 1
+    
     for sub in tqdm(list_subcategories):
         
         subcategory_id = sub['href'].split('/')[-1]
@@ -69,6 +69,6 @@ for link in tqdm(list_categories):
                 df.append([product_url, image, author, title, annotation, genre])
             page += 1
 
-        data = pd.DataFrame(df, columns=columns)
-        data.to_csv(f'data{n}.csv', index=False)
-        n += 1
+    data = pd.DataFrame(df, columns=columns)
+    data.to_csv(f'data{n}.csv', index=False)
+    n += 1
